@@ -1,0 +1,8 @@
+This is a simple attempt to implement a general string evolver genetic algorithm .
+
+any suggestions are welcome
+
+First trial would include tournament approach. a population of 10 strings and a reference string of lenght 10.
+God knows how long that will take . 
+
+

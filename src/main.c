@@ -14,12 +14,15 @@
  *        Company:  User
  *
  * =====================================================================================
- */
+ * */
+#include <time.h>
+
 int main (int argc, char const* argv[])
 {
 	int i,j;
 	char ref[11]="mynameisap";
 	char population[10][11];
+	srand(time(NULL));
 	for( i = 0; i < 10; i += 1)
 	{
 	for(j = 0; j < 10; j += 1)
