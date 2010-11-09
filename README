@@ -5,4 +5,8 @@ any suggestions are welcome
 First trial would include tournament approach. a population of 10 strings and a reference string of lenght 10.
 God knows how long that will take . 
 
+#########
+As of now , the implementation runs . Very poor implementation , output is mostly random , more like a bruteforce method. Need better approaches in choosing parameters . Almost all parameters hard coded as of now . Should change that
+
+####################
 
