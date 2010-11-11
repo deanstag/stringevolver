@@ -16,6 +16,7 @@
  * =====================================================================================
  * */
 #include <time.h>
+#define POPULATIONSIZE 10
 
 int generatechar()
 {
@@ -46,7 +47,7 @@ void mutate(char *a)
 void shuffle(int *o)
 {
     int k=0,j=0,tmp;
-    for(k=9;k>0;k--)
+    for(k=POPULATIONSIZE-1;k>0;k--)
     {
         j=rand()%k;
         tmp = o[j];
@@ -62,14 +63,14 @@ void shuffle(int *o)
 int main (int argc, char const* argv[])
 {
 	int i,j,flag=1,maxm=0,m,n,gen = 0;
-	int order[10];
+	int order[POPULATIONSIZE];
 	char ref[11]="abcccabccc";
-	char population[10][11];
+	char population[POPULATIONSIZE][11];
 	srand(time(NULL));
 
-	for(i = 0;i<10;order[i]=i,i++);
+	for(i = 0;i<POPULATIONSIZE;order[i]=i,i++);
 
-	for( i = 0; i < 10; i += 1)
+	for( i = 0; i < POPULATIONSIZE; i += 1)
 	{
 	for(j = 0; j < 10; j += 1)
 	{
@@ -85,7 +86,7 @@ int main (int argc, char const* argv[])
 	    gen++;
 	    printf("\nGeneration:%d",gen);
 	    shuffle(order);
-		for(i = 0;i<10;i+=2)
+		for(i = 0;i<POPULATIONSIZE;i+=2)
 		{
 			m=fitness(population[order[i]],ref);
 			maxm = m>maxm?m:maxm;
@@ -120,7 +121,7 @@ int main (int argc, char const* argv[])
 	}
 	printf("\ni=%d,j=%d\nPopulation list final\n",i,j);
 
-	for( i = 0; i < 10; i += 1)
+	for( i = 0; i < POPULATIONSIZE; i += 1)
 	{
 	printf("\nString no:%d-%s",i,population[i]);
 	}
