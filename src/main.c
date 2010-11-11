@@ -43,21 +43,38 @@ void mutate(char *a)
 
 }
 
+void shuffle(int *o)
+{
+    int k=0,j=0,tmp;
+    for(k=9;k>0;k--)
+    {
+        j=rand()%k;
+        tmp = o[j];
+        o[j] = o[k];
+        o[k] = tmp;
+    }
+
+}
+
 
 
 
 int main (int argc, char const* argv[])
 {
 	int i,j,flag=1,maxm=0,m,n,gen = 0;
+	int order[10];
 	char ref[11]="abcccabccc";
 	char population[10][11];
 	srand(time(NULL));
+
+	for(i = 0;i<10;order[i]=i,i++);
+
 	for( i = 0; i < 10; i += 1)
 	{
 	for(j = 0; j < 10; j += 1)
 	{
 		population[i][j]=generatechar();
-		
+
 	}
 	population[i][10]='\0';
 	printf("\nString no:%d-%s",i,population[i]);
@@ -67,29 +84,32 @@ int main (int argc, char const* argv[])
 	{
 	    gen++;
 	    printf("\nGeneration:%d",gen);
+	    shuffle(order);
 		for(i = 0;i<10;i+=2)
 		{
-			m=fitness(population[i],ref);
+			m=fitness(population[order[i]],ref);
 			maxm = m>maxm?m:maxm;
-			n=fitness(population[i+1],ref);
+			n=fitness(population[order[i+1]],ref);
 			maxm = n>maxm?n:maxm;
 			if(m>n)
 			{
-				strcpy(population[i+1],population[i]);
+				strcpy(population[order[i+1]],population[order[i]]);
 			}
 			else
 			{
-			    strcpy(population[i],population[i+1]);
+			    strcpy(population[order[i]],population[order[i+1]]);
 			}
-			mutate(population[i]);
-			if(strcmp(population[i],ref)==0)
+			mutate(population[order[i]]);
+			if(strcmp(population[order[i]],ref)==0)
 			{
+			    i=order[i];
 			    flag = 0;
 			    break;
 			}
-			mutate(population[i+1]);
-			if(strcmp(population[i+1],ref)==0)
+			mutate(population[order[i+1]]);
+			if(strcmp(population[order[i+1]],ref)==0)
 			{
+			    i=order[i+1];
 			    flag = 0;
 			    break;
 			}
@@ -113,4 +133,4 @@ int main (int argc, char const* argv[])
 
 return 0;
 }
-	
+
