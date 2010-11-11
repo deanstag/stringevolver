@@ -106,7 +106,6 @@ int main (int argc, char const* argv[])
 			    flag = 0;
 			    break;
 			}
-			mutate(population[order[i+1]]);
 			if(strcmp(population[order[i+1]],ref)==0)
 			{
 			    i=order[i+1];
